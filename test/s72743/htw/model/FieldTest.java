@@ -1,6 +1,7 @@
 package s72743.htw.model;
 
 import org.junit.Test;
+import s72743.htw.model.exceptions.AlreadyOccupiedException;
 import s72743.htw.model.exceptions.InvalidPointException;
 
 import java.awt.*;
@@ -73,5 +74,17 @@ public class FieldTest {
             field.getFigure(inputPoint);
             fail();
         } catch (InvalidPointException e){}
+    }
+    @Test
+    public void testSetFigureIntoOccupiedCell() throws Exception {
+        final  Field field = new Field();
+        final Point inputPoint = new Point(0,0);
+        final Figure inputFigure = Figure.O;
+        final Figure newFigure = Figure.X;
+        field.setFigure(inputPoint,inputFigure);
+        try{
+            field.setFigure(inputPoint,newFigure);
+            fail();
+        }catch (AlreadyOccupiedException e){}
     }
 }
