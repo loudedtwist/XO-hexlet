@@ -7,16 +7,28 @@ import java.awt.*;
 
 public class Field {
 
-    public static final int FIELD_SIZE = 3;
+
+
+
     public static final int MIN_FIELDVALUE = 0;
-    private Figure figure[][] = new Figure[FIELD_SIZE][FIELD_SIZE];
 
+    private final int fieldSize;
+    private final Figure figure[][];
 
+    public Field(int fieldSize) {
+        this.fieldSize = fieldSize;
+        figure = new Figure[fieldSize][fieldSize];
+    }
 
 
     public int getSize(){
-        return FIELD_SIZE*FIELD_SIZE;
+        return fieldSize;
     }
+
+    public static int getMinFieldvalue() {
+        return MIN_FIELDVALUE;
+    }
+
     public Figure getFigure(final Point point) throws InvalidPointException {
         if (!checkPoint(point)) throw new InvalidPointException();
         return figure[point.y][point.x];
@@ -31,7 +43,7 @@ public class Field {
     }
 
     private boolean checkPoint(final Point point){
-        return ((point.y >= MIN_FIELDVALUE && point.y < FIELD_SIZE) && (point.x >= MIN_FIELDVALUE && point.x < FIELD_SIZE) );
+        return ((point.y >= MIN_FIELDVALUE && point.y < fieldSize) && (point.x >= MIN_FIELDVALUE && point.x < fieldSize) );
 
     }
 
