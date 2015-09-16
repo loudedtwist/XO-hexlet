@@ -23,8 +23,10 @@ public class Field {
     }
 
     public void setFigure (final Point point, final Figure figure)
-            throws InvalidPointException {
+            throws InvalidPointException,
+                    AlreadyOccupiedException {
         if (!checkPoint(point)) throw new InvalidPointException();
+        if(this.figure[point.y][point.x] != null) throw new AlreadyOccupiedException();
         this.figure[point.y][point.x] = figure;
     }
 
