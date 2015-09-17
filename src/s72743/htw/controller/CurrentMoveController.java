@@ -3,6 +3,7 @@ package s72743.htw.controller;
 
 import s72743.htw.model.Field;
 import s72743.htw.model.Figure;
+import s72743.htw.model.Game;
 import s72743.htw.model.exceptions.InvalidPointException;
 
 import java.awt.*;
@@ -21,8 +22,10 @@ public class CurrentMoveController {
         } catch (InvalidPointException e) {
                         e.printStackTrace();
                     }
-        if (countX+countO==0) return null;
         if(countX+countO == field.getSize()*field.getSize()) return null;
         return (countX>countO)? Figure.O: Figure.X;
+    }
+    public static String whoIsWho(final Game game, final Figure figure){
+        return figure == game.getPlayers()[0].getFigure() ? game.getPlayers()[0].getName() : game.getPlayers()[1].getName();
     }
 }

@@ -41,7 +41,7 @@ public class WinnerController {
             }
         return null;
     }
-    public Figure getWinner(Field field){
+    public static Figure getWinner(Field field){
         //rows
         try {
             for(int i= 0; i<field.getSize();i++)
@@ -54,13 +54,13 @@ public class WinnerController {
                 return field.getFigure(new Point(0, 0));
             if(check(field, new Point(0, 2), p -> new Point(p.x+1,p.y-1)))
                 return field.getFigure(new Point(1, 1));
-            return null;
+
         } catch (InvalidPointException e) {
             e.printStackTrace();
         }
-
+        return null;
     }
-    private boolean check(final Field field, final Point currentPoint,final IPointGenerator pointGenerator){
+    private static boolean check(final Field field, final Point currentPoint, final IPointGenerator pointGenerator){
         final Figure currentFigure;
         final Figure nextFigure;
         final Point nextPoint = pointGenerator.nextPoint(currentPoint);
@@ -74,7 +74,7 @@ public class WinnerController {
 
         if (currentFigure == null) return false;
         if (currentFigure != nextFigure) return false;
-        return check(field, next, pointGenerator)
+        return check(field, nextPoint, pointGenerator);
 
 
     }
