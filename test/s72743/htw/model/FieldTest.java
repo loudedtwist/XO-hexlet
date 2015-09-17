@@ -16,14 +16,14 @@ public class FieldTest {
     @Test
     public void testGetSize() throws Exception {
         int expectedValue = 3*3;
-        final  Field field = new Field();
-        int actualValue =  field.getSize();
+        final  Field field = new Field(3);
+        int actualValue =  field.getSize()*field.getSize();
         assertEquals(expectedValue,actualValue);
     }
 
     @Test
     public void testSetFigure() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(0,0);
         final Figure inputFigure = Figure.O;
 
@@ -34,14 +34,14 @@ public class FieldTest {
     }
     @Test
     public void testGetFigureWhenFigureIsNotSet() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(0,0);
         final Figure actualFigure = field.getFigure(inputPoint);
         assertNull(actualFigure);
     }
     @Test
     public void testGetFigureWhenXIsLessThenZero() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(0,-1);
         try {
             field.getFigure(inputPoint);
@@ -50,7 +50,7 @@ public class FieldTest {
     }
     @Test
     public void testGetFigureWhenYIsLessThenZero() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(-1,0);
         try {
             field.getFigure(inputPoint);
@@ -59,7 +59,7 @@ public class FieldTest {
     }
     @Test
     public void testGetFigureWhenXIsGreaterThenSize() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(0,5);
         try {
             field.getFigure(inputPoint);
@@ -68,7 +68,7 @@ public class FieldTest {
     }
     @Test
     public void testGetFigureWhenYIsGreaterThenSize() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(5 ,0);
         try {
             field.getFigure(inputPoint);
@@ -77,7 +77,7 @@ public class FieldTest {
     }
     @Test
     public void testSetFigureIntoOccupiedCell() throws Exception {
-        final  Field field = new Field();
+        final  Field field = new Field(3);
         final Point inputPoint = new Point(0,0);
         final Figure inputFigure = Figure.O;
         final Figure newFigure = Figure.X;
